@@ -8,5 +8,16 @@
   </head>
   <body>
     <h1>Contact Page</h1>
+    <p>Have a question, or feedback? Get in touch!</p>
+    <form action="/formupload" method="POST">
+      <label for="name"> Name: </label>
+      <input type="text" name="name" id="name" />
+      <label for="email"> Email: </label>
+      <input type="email" name="email" id="email" />
+      <label for="message"> Message </label>
+      <textarea name="message" id="message" cols="30" rows="10"></textarea>
+      <button type="submit">Sumbit</button>
+    </form>
+    <a href="/"> <p>Back Home</p></a>
   </body>
 </html>
