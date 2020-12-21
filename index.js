@@ -4,21 +4,29 @@ import url from 'url';
 import formidable from 'formidable';
 
 const uploadFormDetails = (req, res) => {
-  console.log('uploading a form!');
   let form = new formidable.IncomingForm();
-  console.log('form');
-  console.log(form);
   form.parse(req, (err, fields, files) => {
-    console.log('fields');
-    console.log(fields);
     let loggedMsg = `
     =================
     Name: ${fields.name},
     Email: ${fields.email},
     Message: ${fields.message}`;
     fs.appendFile('siteMessages.txt', loggedMsg, (err) => {
-      if (err) throw err;
-      res.writeHead('200', { 'Content-Tye': 'text/html' });
+      if (err) {
+        res.writeHead('400', { 'Content-Tye': 'text/html' });
+        res.write(
+          ` <p>
+            Error processing submission. <a href='/contact'>Try again?</a>
+          </p>`
+        );
+      } else {
+        res.writeHead('202', { 'Content-Tye': 'text/html' });
+        res.write(
+          `<p>
+            Submission success!. <a href='/'>Back Home</a>
+          </p>`
+        );
+      }
       return res.end();
     });
   });
