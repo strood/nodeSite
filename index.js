@@ -1,7 +1,7 @@
-import http from 'http';
-import fs from 'fs';
-import url from 'url';
-import formidable from 'formidable';
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+const formidable = require('formidable');
 
 const uploadFormDetails = (req, res) => {
   let form = new formidable.IncomingForm();
